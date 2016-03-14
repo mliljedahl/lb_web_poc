@@ -8,6 +8,7 @@ Since this kind of setup installs every machine almost from scratch it is very t
 
 ## Requirements
 
+* Python 3.4+ or 2.7+ - [python.org](https://www.python.org/downloads/)
 * Virtualbox - [virtualbox.org](https://www.virtualbox.org/wiki/Linux_Downloads)
 * Vagrant - [vagrantup.com](https://www.vagrantup.com/downloads.html)
 
@@ -31,3 +32,7 @@ required named arguments:
   -r REQUESTS, --requests REQUESTS
                         number of http requests
 ```
+
+## Just for fun
+
+Extend this project and benchmark Docker, Ansible, Chef and Puppet.
