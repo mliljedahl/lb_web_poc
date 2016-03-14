@@ -1,12 +1,20 @@
 ---
-- hosts: all
+- hosts: webservers
   sudo: yes
+  roles:
+    - nginx
   tasks:
-	- name: Install nginx
-	  apt: pkg=nginx state=installed update_cache=true
-	  notify:
-	    - start nginx
+    - name: Upload web-node nginx config
+      copy: src=configs/web-node.nginx.conf dest=/etc/nginx/sites-enabled/default.conf mode=0644
+      notify:
+        - restart nginx
 
-	handlers:
-    - name: start nginx
-      service: name=nginx state=started
+- hosts: loadbalancers
+  sudo: yes
+  roles:
+    - nginx
+  tasks:
+    - name: Upload lb-web-nodes nginx config
+      template: src=configs/lb-web-nodes.nginx.conf.j2 dest=/etc/nginx/sites-enabled/default.conf mode=0644
+      notify:
+        - restart nginx
